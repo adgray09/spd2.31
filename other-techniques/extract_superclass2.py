@@ -9,7 +9,12 @@ class Circle:
       self.visible = visible
       
     def display(self):
-        print('drew the circle.')
+        if issubclass(type(self), Rectangle):
+            print('drew the rectangle')
+        elif isinstance(self, Circle):  
+            print('drew the circle.')
+        else:
+            print('no work')
         
     def set_visible(self,is_visible):
         self.visible = is_visible
@@ -17,25 +22,19 @@ class Circle:
     def get_center(self):
         return self.center_x, self.center_y
     
-class Rectangle:
+class Rectangle(Circle):
     
     def __init__(self, x, y, width, height, visible = True):
+        super().__init__(x,y,visible)
         # left-bottom corner.
         self.x = x
         self.y = y
         self.width = width
         self.height = height
         self.visible = visible
-        
-    def display(self):
-        if self.visible:
-            print('drew the rectangle.')
             
     def hide(self):
         self.visible = False
-        
-    def make_visible(self):
-        self.visible = True
         
     def get_center(self):
         return self.x + self.width/2, \
@@ -52,6 +51,6 @@ if __name__ == "__main__":
     rect = Rectangle(10, 10, 20, 5)
     rect.hide()
     rect.display() # does not display because it's hidden.
-    rect.make_visible()
+    rect.set_visible(True)
     rect.display()
     print('center point',rect.get_center())
