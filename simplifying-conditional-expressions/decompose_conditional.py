@@ -3,19 +3,25 @@
 # methods from the condition, then part, and else part(s).
 
 def make_alert_sound():
+    print('!!!')
+    print('there is a toxin in the food!')
+    print('!!!')
     print('made alert sound.')
 def make_accept_sound():
-    print('made acceptance sound')
-
-ingredients = ['sodium benzoate']
-if 'sodium nitrate' in ingredients or 'sodium benzoate' in ingredients\
-or 'sodium oxide' in ingredients:
-    print('!!!')
-    print('there is a toxin in the food!')    
-    print('!!!')
-    make_alert_sound()
-else:
     print('***')
     print('Toxin Free')
     print('***')
+    print('made acceptance sound')
+
+def has_toxic_ingredients(ingredients):
+    toxic_ingredients = ['sodium nitrate', 'sodium benzoate', 'sodium oxide']
+    for ingredient in ingredients:
+        if ingredient in toxic_ingredients:
+            return True
+    return False
+
+ingredients = ['sodium benzoate']
+if has_toxic_ingredients(ingredients):
+    make_alert_sound()
+else:
     make_accept_sound()

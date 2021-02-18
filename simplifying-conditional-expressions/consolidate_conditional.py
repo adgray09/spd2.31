@@ -8,19 +8,27 @@ def add_salt():
     print('added salt.')
 def pour(liquid):
     print('poured', liquid + '.',)
+    
+    
+def lacks_ingredients(ingredients):
+    
+    necessary_ingredients = {
+        'cucumber': False,
+        'tomato': False,
+        'onion': False,
+        'lemon juice': False
+    }
+    
+    for ingredient in ingredients:
+        necessary_ingredients[ingredient] = True
+    for _, value in necessary_ingredients.items():
+        if not value:
+            return True
+    return False
 
 def make_shirazi_salad(ingredients):
-    if 'cucumber' not in ingredients:
-        print('lacks ingredients.')
-        return
-    if 'tomato' not in ingredients:
-        print('lacks ingredients.')
-        return
-    if 'onion' not in ingredients:
-        print('lacks ingredients.')
-        return
-    if 'lemon juice' not in ingredients:
-        print('lacks ingredients.')
+    if lacks_ingredients(ingredients):
+        print('lacks ingredients')
         return
     dice(ingredients)
     mix_all(ingredients)
